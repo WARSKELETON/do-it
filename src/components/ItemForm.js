@@ -1,15 +1,30 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import { AppContext } from "../context";
 import styled from "styled-components";
 
 const ItemForm = () => {
+    const [value, setValue] = useState("");
+
+    const handleChange = event => {
+        setValue(event.target.value);
+    };
+
+    const handleSubmit = event => {
+        console.log(value);
+        setValue("");
+        event.preventDefault();
+    };
+
     return (
         <>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <FormWrapper>
                     <Name>
                         <p>New Item</p>
                         <Input
-                            name="name"
+                            type="text"
+                            onChange={handleChange}
+                            value={value}
                             autoComplete="off"
                             placeholder="Your item"
                         />
@@ -32,11 +47,6 @@ const FormWrapper = styled.div`
     grid-template-areas:
         "name"
         "submit";
-`;
-
-const ErrorText = styled.p`
-    color: red;
-    font-weight: 700;
 `;
 
 const Input = styled.input`

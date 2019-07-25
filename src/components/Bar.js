@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AppContext } from "../context";
 import styled from "styled-components";
 
 const Bar = () => {
+    const value = useContext(AppContext);
+
     return (
         <BarWrapper>
             <Logo>
                 <h1>DO IT.</h1>
             </Logo>
             <Utilities>
-                <p>
+                <button onClick={() => value.toggleForm()}>
                     <i className="fas fa-plus-circle" />
-                </p>
+                </button>
             </Utilities>
         </BarWrapper>
     );
@@ -37,9 +40,15 @@ const Logo = styled.div`
 const Utilities = styled.div`
     grid-area: utilities;
 
-    p {
+    button {
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
         margin-top: 20px;
         font-size: 32px;
         text-align: right;
+        color: var(--mainYellow);
+        background-color: transparent;
+        border: none;
     }
 `;
