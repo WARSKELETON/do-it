@@ -1,16 +1,20 @@
 import React from "react";
 import styled from "styled-components";
 
-const Item = () => {
+const Item = props => {
     return (
         <ItemWrapper>
             <Status>
                 <button>
-                    <i className="fas fa-circle" />
+                    {props.status ? (
+                        <i className="fas fa-circle" />
+                    ) : (
+                        <i className="far fa-circle" />
+                    )}
                 </button>
             </Status>
             <Activity>
-                <p>Get the high ticket done.</p>
+                <p>{props.activity}</p>
             </Activity>
         </ItemWrapper>
     );
@@ -20,7 +24,7 @@ export default Item;
 
 const ItemWrapper = styled.div`
     display: grid;
-    grid-template-columns: repeat(2, auto);
+    grid-template-columns: 60px 1fr;
     grid-template-rows: 1fr;
     grid-template-areas: "status activity";
 `;
@@ -31,7 +35,7 @@ const Status = styled.div`
     button {
         background-color: transparent;
         border: none;
-        margin-top: 32%;
+        margin-top: 40%;
         margin-left: 20%;
         text-align: center;
         font-size: 22px;

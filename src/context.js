@@ -4,7 +4,8 @@ const AppContext = React.createContext();
 
 class AppProvider extends Component {
     state = {
-        formActive: false
+        formActive: false,
+        items: null
     };
 
     toggleForm = () => {
@@ -13,12 +14,26 @@ class AppProvider extends Component {
         });
     };
 
+    setItems = items => {
+        this.setState({
+            items: items
+        });
+    };
+
+    addItem = newItem => {
+        this.setState({
+            items: [...this.state.items, newItem]
+        });
+    };
+
     render() {
         return (
             <AppContext.Provider
                 value={{
                     state: this.state,
-                    toggleForm: this.toggleForm
+                    toggleForm: this.toggleForm,
+                    setItems: this.setItems,
+                    addItem: this.addItem
                 }}
             >
                 {this.props.children}

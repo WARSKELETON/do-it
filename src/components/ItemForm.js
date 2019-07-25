@@ -1,8 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useState, useContext } from "react";
 import { AppContext } from "../context";
 import styled from "styled-components";
+import axios from "axios";
 
 const ItemForm = () => {
+    const context = useContext(AppContext);
     const [value, setValue] = useState("");
 
     const handleChange = event => {
@@ -11,7 +13,13 @@ const ItemForm = () => {
 
     const handleSubmit = event => {
         console.log(value);
+        const newItem = { id: Date.now(), status: false, activity: value };
+        axios.post("http://localhost:4000/items", newItem).then(res => {
+            console.log(res);
+            context.addItem(newItem);
+        });
         setValue("");
+        context.toggleForm();
         event.preventDefault();
     };
 
