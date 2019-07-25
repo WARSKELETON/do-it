@@ -1,0 +1,11 @@
+:root {
+    --mainBlack: #121212;
+    --mainWhite: #f0f0f0;
+    --mainYellow: #fbf594;
+}
+
+body {
+    font-family: "Montserrat";
+    background-color: var(--mainBlack);
+    color: var(--mainYellow);
+}
