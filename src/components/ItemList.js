@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { AppContext } from "../context";
 import Item from "./Item";
 import ItemForm from "./ItemForm";

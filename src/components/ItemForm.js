@@ -12,7 +12,6 @@ const ItemForm = () => {
     };
 
     const handleSubmit = event => {
-        console.log(value);
         const newItem = { id: Date.now(), status: false, activity: value };
         axios.post("http://localhost:4000/items", newItem).then(res => {
             console.log(res);
@@ -24,25 +23,23 @@ const ItemForm = () => {
     };
 
     return (
-        <>
-            <form onSubmit={handleSubmit}>
-                <FormWrapper>
-                    <Name>
-                        <p>New Item</p>
-                        <Input
-                            type="text"
-                            onChange={handleChange}
-                            value={value}
-                            autoComplete="off"
-                            placeholder="Your item"
-                        />
-                    </Name>
-                    <Submit>
-                        <button type="submit">Done</button>
-                    </Submit>
-                </FormWrapper>
-            </form>
-        </>
+        <form onSubmit={handleSubmit}>
+            <FormWrapper>
+                <Name>
+                    <p>New Item</p>
+                    <Input
+                        type="text"
+                        onChange={handleChange}
+                        value={value}
+                        autoComplete="off"
+                        placeholder="Your item"
+                    />
+                </Name>
+                <Submit>
+                    <button type="submit">Done</button>
+                </Submit>
+            </FormWrapper>
+        </form>
     );
 };
 

@@ -24,7 +24,7 @@ export default Item;
 
 const ItemWrapper = styled.div`
     display: grid;
-    grid-template-columns: 60px 1fr;
+    grid-template-columns: 60px 320px;
     grid-template-rows: 1fr;
     grid-template-areas: "status activity";
 `;
