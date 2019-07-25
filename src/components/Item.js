@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AppContext } from "../context";
 import styled from "styled-components";
+import axios from "axios";
 
 const Item = props => {
+    const value = useContext(AppContext);
+
+    const changeStatus = id => {
+        let item = value.getItem(id);
+        item.status = !item.status;
+
+        axios.put(`http://localhost:4000/items/${item.id}`, item).then(res => {
+            value.updateItems(item);
+        });
+    };
+
     return (
         <ItemWrapper>
             <Status>
-                <button>
+                <button onClick={() => changeStatus(props.id)}>
                     {props.status ? (
                         <i className="fas fa-circle" />
                     ) : (
@@ -13,7 +26,7 @@ const Item = props => {
                     )}
                 </button>
             </Status>
-            <Activity>
+            <Activity status={props.status}>
                 <p>{props.activity}</p>
             </Activity>
         </ItemWrapper>
@@ -49,7 +62,10 @@ const Status = styled.div`
 
 const Activity = styled.div`
     grid-area: activity;
-    color: var(--mainBlack);
+    color: ${props =>
+        props.status ? "var(--lightBlack)" : "var(--mainBlack)"};
+    text-decoration: ${props =>
+        props.status ? "var(--mainYellow) line-through" : "none"};
 
     p {
         background-color: var(--mainYellow);

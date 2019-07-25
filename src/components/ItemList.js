@@ -11,7 +11,7 @@ const ItemList = () => {
         axios.get("http://localhost:4000/items").then(res => {
             value.setItems(res.data);
         });
-    }, []);
+    }, [value]);
 
     return value.state.items ? (
         <>
@@ -20,6 +20,7 @@ const ItemList = () => {
                     key={item.id}
                     status={item.status}
                     activity={item.activity}
+                    id={item.id}
                 />
             ))}
             {value.state.formActive && <ItemForm />}

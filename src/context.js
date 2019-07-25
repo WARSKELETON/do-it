@@ -26,6 +26,20 @@ class AppProvider extends Component {
         });
     };
 
+    getItem = id => {
+        return this.state.items.find(item => item.id === id);
+    };
+
+    updateItems = updatedItem => {
+        const updatedItems = this.state.items.map(item => {
+            return item.id === updatedItem.id ? updatedItem : item;
+        });
+
+        this.setState({
+            items: updatedItems
+        });
+    };
+
     render() {
         return (
             <AppContext.Provider
@@ -33,7 +47,9 @@ class AppProvider extends Component {
                     state: this.state,
                     toggleForm: this.toggleForm,
                     setItems: this.setItems,
-                    addItem: this.addItem
+                    addItem: this.addItem,
+                    getItem: this.getItem,
+                    updateItems: this.updateItems
                 }}
             >
                 {this.props.children}

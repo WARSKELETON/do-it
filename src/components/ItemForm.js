@@ -36,7 +36,7 @@ const ItemForm = () => {
                     />
                 </Name>
                 <Submit>
-                    <button type="submit">Done</button>
+                    <button type="submit">Add Item</button>
                 </Submit>
             </FormWrapper>
         </form>
