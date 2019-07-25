@@ -5,9 +5,9 @@ const Item = () => {
     return (
         <ItemWrapper>
             <Status>
-                <p>
+                <button>
                     <i className="fas fa-circle" />
-                </p>
+                </button>
             </Status>
             <Activity>
                 <p>Get the high ticket done.</p>
@@ -28,9 +28,18 @@ const ItemWrapper = styled.div`
 const Status = styled.div`
     grid-area: status;
 
-    p {
+    button {
+        background-color: transparent;
+        border: none;
+        margin-top: 32%;
+        margin-left: 20%;
         text-align: center;
         font-size: 22px;
+        color: var(--mainYellow);
+
+        i {
+            height: 100%;
+        }
     }
 `;
 

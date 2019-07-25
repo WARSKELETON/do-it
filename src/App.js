@@ -1,14 +1,15 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import Bar from "./components/Bar";
 import Item from "./components/Item";
+import ItemForm from "./components/ItemForm";
 
 function App() {
     return (
         <>
             <Bar />
             <Item />
+            <ItemForm />
         </>
     );
 }
