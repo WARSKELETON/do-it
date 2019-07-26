@@ -6,12 +6,13 @@ import axios from "axios";
 
 const ItemList = () => {
     const value = useContext(AppContext);
+    const BASE_URL = value.state.baseUrl;
 
     useEffect(() => {
-        axios.get("http://localhost:4000/items").then(res => {
+        axios.get(`${BASE_URL}`).then(res => {
             value.setItems(res.data);
         });
-    }, [value]);
+    }, []);
 
     return value.state.items ? (
         <>

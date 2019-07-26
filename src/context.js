@@ -5,7 +5,8 @@ const AppContext = React.createContext();
 class AppProvider extends Component {
     state = {
         formActive: false,
-        items: null
+        items: null,
+        baseUrl: "http://localhost:4000/items"
     };
 
     toggleForm = () => {
@@ -40,6 +41,16 @@ class AppProvider extends Component {
         });
     };
 
+    deleteItem = deletedItem => {
+        const newItems = this.state.items.filter(
+            item => item.id !== deletedItem.id
+        );
+
+        this.setState({
+            items: newItems
+        });
+    };
+
     render() {
         return (
             <AppContext.Provider
@@ -49,7 +60,8 @@ class AppProvider extends Component {
                     setItems: this.setItems,
                     addItem: this.addItem,
                     getItem: this.getItem,
-                    updateItems: this.updateItems
+                    updateItems: this.updateItems,
+                    deleteItem: this.deleteItem
                 }}
             >
                 {this.props.children}

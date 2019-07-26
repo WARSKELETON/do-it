@@ -5,13 +5,22 @@ import axios from "axios";
 
 const Item = props => {
     const value = useContext(AppContext);
+    const BASE_URL = value.state.baseUrl;
 
     const changeStatus = id => {
         let item = value.getItem(id);
         item.status = !item.status;
 
-        axios.put(`http://localhost:4000/items/${item.id}`, item).then(res => {
+        axios.put(`${BASE_URL}/${item.id}`, item).then(res => {
             value.updateItems(item);
+        });
+    };
+
+    const removeItem = id => {
+        let item = value.getItem(id);
+
+        axios.delete(`${BASE_URL}/${item.id}`, item).then(res => {
+            value.deleteItem(item);
         });
     };
 
@@ -29,6 +38,11 @@ const Item = props => {
             <Activity status={props.status}>
                 <p>{props.activity}</p>
             </Activity>
+            <Remove>
+                <button onClick={() => removeItem(props.id)}>
+                    <i className="fas fa-trash" />
+                </button>
+            </Remove>
         </ItemWrapper>
     );
 };
@@ -37,9 +51,9 @@ export default Item;
 
 const ItemWrapper = styled.div`
     display: grid;
-    grid-template-columns: 60px 320px;
+    grid-template-columns: 60px 320px 60px;
     grid-template-rows: 1fr;
-    grid-template-areas: "status activity";
+    grid-template-areas: "status activity remove";
 `;
 
 const Status = styled.div`
@@ -74,4 +88,8 @@ const Activity = styled.div`
         border-radius: 10px;
         font-weight: 700;
     }
+`;
+
+const Remove = styled(Status)`
+    grid-area: remove;
 `;

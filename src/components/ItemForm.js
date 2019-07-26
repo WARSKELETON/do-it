@@ -6,6 +6,7 @@ import axios from "axios";
 const ItemForm = () => {
     const context = useContext(AppContext);
     const [value, setValue] = useState("");
+    const BASE_URL = context.state.baseUrl;
 
     const handleChange = event => {
         setValue(event.target.value);
@@ -13,7 +14,7 @@ const ItemForm = () => {
 
     const handleSubmit = event => {
         const newItem = { id: Date.now(), status: false, activity: value };
-        axios.post("http://localhost:4000/items", newItem).then(res => {
+        axios.post(`${BASE_URL}`, newItem).then(res => {
             console.log(res);
             context.addItem(newItem);
         });
